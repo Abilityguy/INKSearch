@@ -16,7 +16,7 @@ def search_query(query_term, document_vector_list, model, n_terms=3):
 
     similarity_list = sorted(similarity_list, key=lambda x:x[1], reverse=True)
 
-    return similarity_list[:nTerms]
+    return similarity_list[:n_terms]
 
 # A function to retreive the relevant rows from the dataframe df according to
 # the indices in the similarity_list.
