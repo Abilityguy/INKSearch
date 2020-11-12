@@ -1,0 +1,36 @@
+body {
+  background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url("../images/back.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+  height: 100%;
+  overflow:hidden;
+}
+
+.modal {
+  overflow-y: auto;
+}
+
+.info-icon {
+  height: 15px;
+  width: 15px;
+}
+
+.info-icon:hover {
+  cursor: pointer;
+}
+
+.nav-title {
+  font-family: helvetica;
+  color: black;
+}
+
+.title {
+  color: white;
+  font-family: helvetica;
+}
+
+.video-thumbnail:hover {
+  opacity: 0.8;
+}

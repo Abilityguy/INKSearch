@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>INKSearch</title>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
+{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <span class='nav-title'>INKSearch</span>
+  </a>
+</nav>
+
+<div class="d-flex justify-content-md-center align-items-center vh-100">
+
+  <div class="container">
+  <div class="row justify-content-center">
+      <p class="h1 title">INKSearch</p>
+      <img src="{{ url_for('static',filename='images/question-mark.png') }}" class="info-icon" data-toggle="popover" data-content="A search engine that the INK talks videos and returns relevant results for you to watch!">
+  </div>
+
+  <div class="row justify-content-center">
+      <form class="form-inline" action="/" method="POST">
+        <div class="form-group pr-2">
+          <input type="text" class="form-control" placeholder="Search for a video" name="query" id="query">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+  </div>
+  </div>
+
+  {% if search %}
+    <div class="modal fade" id="myModal">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+                <ol class="carousel-indicators">
+                  {% for index, value in results.iterrows() %}
+                    {% if index == 0 %}
+                      <li data-target="#carouselExampleIndicators" data-slide-to="{{ index }}" class="active"></li>
+                    {% else %}
+                      <li data-target="#carouselExampleIndicators" data-slide-to="{{ index }}"></li>
+                    {% endif %}
+                  {% endfor %}
+                </ol>
+
+                <div class="carousel-inner">
+                  {% for index, value in results.iterrows() %}
+                    {% if index == 0 %}
+                        <div class="carousel-item active">
+                          <a href="{{ value['Talk URL'] }}" target="_blank">
+                            <div class="video-thumbnail">
+                              <img class="d-block w-100" src="{{ value['Talk Thumbnail URL'] }}" alt="{{ value['Title'] }}">
+                              <div class="carousel-caption d-none d-md-block">
+                                <h3>{{ value['Title'] }}</h3>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                    {% else %}
+                        <div class="carousel-item">
+                          <a href="{{ value['Talk URL'] }}" target="_blank">
+                            <div class="video-thumbnail">
+                              <img class="d-block w-100" src="{{ value['Talk Thumbnail URL'] }}" alt="{{ value['Title'] }}">
+                              <div class="carousel-caption d-none d-md-block">
+                                <h3>{{ value['Title'] }}</h3>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+</div>
+
+<script type="text/javascript">
+  $(window).on('load',function(){
+      $('#myModal').modal('show');
+  });
+
+  $(function () {
+      $('[data-toggle="popover"]').popover()
+  })
+</script>
+{% endblock %}
