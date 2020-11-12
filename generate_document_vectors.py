@@ -3,7 +3,7 @@ import pandas as pd
 import os
 import pickle
 import gensim.downloader as api
-from helpers.helper_functions import GenerateDocumentVector, PreprocessText
+from helpers.helper_functions import generate_document_vector, preprocess_text
 import argparse
 
 parser = argparse.ArgumentParser(description = 'A program to generate and save \
@@ -21,12 +21,12 @@ if __name__ == '__main__':
     model = api.load('glove-wiki-gigaword-50')
     df = pd.read_csv(args.csv)
 
-    df['ProcessedText'] = df[args.column].apply(PreprocessText)
+    df['ProcessedText'] = df[args.column].apply(preprocess_text)
 
-    documentVectorList = list()
-    for index,wordList in enumerate(df['ProcessedText']):
-        docVector = GenerateDocumentVector(wordList, model)
-        documentVectorList.append([index, docVector])
+    document_vector_list = list()
+    for index,word_list in enumerate(df['ProcessedText']):
+        doc_vector = generate_document_vector(word_list, model)
+        document_vector_list.append([index, doc_vector])
 
     with open(os.path.join(args.dst, 'document_vectors.pkl'), 'wb') as f:
-        pickle.dump(documentVectorList, f)
+        pickle.dump(document_vector_list, f)

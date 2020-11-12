@@ -7,29 +7,29 @@ from nltk.tokenize import word_tokenize
 #
 # Returns: A number in the range [0,1] indicating the similarity between the
 # two vectors.
-def CosineSimilarity(v1, v2):
-    dotProduct = np.dot(v1, v2)
+def cosine_similarity(v1, v2):
+    dot_product = np.dot(v1, v2)
     norm1 = np.linalg.norm(v1)
     norm2 = np.linalg.norm(v2)
 
     if (norm1 * norm2 == 0):
         return 0
     else:
-        return min(dotProduct / (norm1 * norm2), 1)
+        return min(dot_product / (norm1 * norm2), 1)
 
 # A function to preprocess the document text by removing punctuations, digits
 # and stop words.
 #
 # Returns: A list of processed words from the document text.
-def PreprocessText(text):
+def preprocess_text(text):
     stop_words = set(stopwords.words('english'))
 
-    text = re.sub(r"\d+", " ", text)
-    text = re.sub(r"[:\-,.;@#?!&$]+\ *", " ", text)
-    text = text.strip()
+    text = re.sub(r"\d+", " ", text) #replace digits with a whitespace
+    text = re.sub(r"[:\-,.;@#?!&$]+\ *", " ", text) #replace punctuations with a whitespace
+    text = text.strip() #remove leading and trailing spaces
     text = text.lower()
     text = word_tokenize(text)
-    text = [word for word in text if word not in stop_words]
+    text = [word for word in text if word not in stop_words] #remove stopwords from the word list
     return text
 
 # A function to generate a document vector given a list of processed words from
@@ -37,12 +37,12 @@ def PreprocessText(text):
 #
 # Returns: A vector which is the average of the word embeddings of the processed
 # words.
-def GenerateDocumentVector(wordList, model):
-    documentVector = np.zeros(model.vector_size)
+def generate_document_vector(word_list, model):
+    document_vector = np.zeros(model.vector_size)
 
-    for word in wordList:
+    for word in word_list:
         if word in model:
-            documentVector += model[word]
+            document_vector += model[word]
 
-    documentVector /= len(wordList)
-    return documentVector
+    document_vector /= len(word_list)
+    return document_vector
