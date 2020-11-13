@@ -9,9 +9,8 @@ After cloning this repository, navigate to the INKSearch folder and run the foll
 ```
 python3 -m venv env
 source env/bin/activate
-pip3 install requirements.txt
+pip3 install -r requirements.txt 
 ```
-
 ## To run
 ```
 python3 app.py
