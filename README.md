@@ -2,7 +2,7 @@
 
 INKSearch is a INK talk video search engine, which searches through more than 350 videos and retreives relevant results for you to watch.
 
-![INKSearch](extras/INKsearch.gif?style=centerme)
+![INKSearch](extras/INKSearch.gif?style=centerme)
 
 ## Environment setup
 After cloning this repository, navigate to the INKSearch folder and run the following commands.
@@ -14,6 +14,6 @@ pip3 install requirements.txt
 
 ## To run
 ```
-python3 app.py 
+python3 app.py
 ```
 And navigate to http://localhost:5000/
