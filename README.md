@@ -17,3 +17,6 @@ pip3 install requirements.txt
 python3 app.py
 ```
 And navigate to http://localhost:5000/
+
+## Data
+The data was extracted using the code from this [repository](https://github.com/Abilityguy/INK-talks-scraper).
