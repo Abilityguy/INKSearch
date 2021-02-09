@@ -12,7 +12,7 @@ source env/bin/activate
 pip3 install -r requirements.txt
 ```
 ## To run
-Add the MongoDB Connection String URI in ```app.py```, ```upload_data.py``` and ```upload_vectors.py```. Run the scripts upload_data.py and upload_vectors.py to insert data into the MongoDB database. Then,
+Add the MongoDB Connection String URI in ```app.py```, ```upload_data.py``` and ```upload_vectors.py```. Run the scripts ```upload_data.py``` and ```upload_vectors.py``` to insert data into the MongoDB database. Then,
 ```
 python3 app.py
 ```
