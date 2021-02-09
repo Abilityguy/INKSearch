@@ -38,35 +38,35 @@
               <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
                 <ol class="carousel-indicators">
-                  {% for index, value in results.iterrows() %}
-                    {% if index == 0 %}
-                      <li data-target="#carouselExampleIndicators" data-slide-to="{{ index }}" class="active"></li>
+                  {% for result in results %}
+                    {% if loop.index0 == 0 %}
+                      <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}" class="active"></li>
                     {% else %}
-                      <li data-target="#carouselExampleIndicators" data-slide-to="{{ index }}"></li>
+                      <li data-target="#carouselExampleIndicators" data-slide-to="{{ loop.index0 }}"></li>
                     {% endif %}
                   {% endfor %}
                 </ol>
 
                 <div class="carousel-inner">
-                  {% for index, value in results.iterrows() %}
-                    {% if index == 0 %}
+                  {% for result in results %}
+                    {% if loop.index0 == 0 %}
                         <div class="carousel-item active">
-                          <a href="{{ value['Talk URL'] }}" target="_blank">
+                          <a href="{{ result['Talk URL'] }}" target="_blank">
                             <div class="video-thumbnail">
-                              <img class="d-block w-100" src="{{ value['Talk Thumbnail URL'] }}" alt="{{ value['Title'] }}">
+                              <img class="d-block w-100" src="{{ result['Talk Thumbnail URL'] }}" alt="{{ result['Title'] }}">
                               <div class="carousel-caption d-none d-md-block">
-                                <h3>{{ value['Title'] }}</h3>
+                                <h3>{{ result['Title'] }}</h3>
                               </div>
                             </div>
                           </a>
                         </div>
                     {% else %}
                         <div class="carousel-item">
-                          <a href="{{ value['Talk URL'] }}" target="_blank">
+                          <a href="{{ result['Talk URL'] }}" target="_blank">
                             <div class="video-thumbnail">
-                              <img class="d-block w-100" src="{{ value['Talk Thumbnail URL'] }}" alt="{{ value['Title'] }}">
+                              <img class="d-block w-100" src="{{ result['Talk Thumbnail URL'] }}" alt="{{ result['Title'] }}">
                               <div class="carousel-caption d-none d-md-block">
-                                <h3>{{ value['Title'] }}</h3>
+                                <h3>{{ result['Title'] }}</h3>
                               </div>
                             </div>
                           </a>
