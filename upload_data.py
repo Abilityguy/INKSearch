@@ -43,7 +43,7 @@ def make_data_indexes(db):
     db.inktalks.create_index("Title", unique=True)
     db.inktalks.create_index("Talk URL", unique=True)
 
-def main():
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--filename', type=str, required=True)
     args = parser.parse_args()
@@ -57,6 +57,3 @@ def main():
     make_data_indexes(db)
     inserted_ids = insert_data(db, data)
     print(f"Inserted {len(inserted_ids)} documents")
-
-if __name__ == "__main__":
-    exit(main())
