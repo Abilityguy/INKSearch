@@ -17,9 +17,13 @@ def search_query(db, query, ink_data, n_terms=3, vector_size=50):
     processed_query = helper_functions.preprocess_text(query)
     v = np.zeros(vector_size)
     sif_embeddings = db.word_vectors.find({'word':{'$in': processed_query}})
-
+    n_words = 0
     for vec in sif_embeddings:
+        n_words += 1
         v += vec['vector']
+
+    if (n_words > 0):
+        v *= 1/n_words
 
     search_result = list()
     for idx, data in enumerate(ink_data):
